@@ -1,0 +1,206 @@
+/* Base styles */
+html {
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	background: $body-background;
+	color: $body-background;
+	font-family: $font-stack;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	-webkit-font-smoothing: antialiased;
+	font-weight: $bold;
+	overflow-x: hidden;
+	overflow-y: visible;
+
+	@include breakpoint(small-desktop) {
+		color: $primary-text;
+
+	}
+}
+
+#app {
+
+	@include breakpoint(small-desktop) {
+		display: flex;
+		height: 100%;
+	}
+	.col-50 {
+		height: 100%;
+		flex: 0 0 50%;
+		overflow: hidden;
+	}
+}
+
+.canvas {
+	position: fixed;
+
+	@include breakpoint(small-desktop) {
+		position: relative;
+	}
+
+	.mask-img {
+		height: 100%;
+		width: 100%;
+
+		.img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+
+.content {
+	position: relative;
+	height: 100%;
+	padding: 40px;
+	z-index: 1;
+
+	@include breakpoint(small-desktop) {
+		padding: 0;
+	}
+
+	#content-slider {
+		margin-right: 0;
+		z-index: 1;
+
+		@include breakpoint(small-desktop) {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-end;
+			height: 100%;
+			margin-right: 15%;
+		}
+
+		@include breakpoint(desktop) {
+			margin-right: 25%;
+		}
+
+		@include breakpoint(large-destop) {
+			margin-right: 35%;
+		}
+
+		.content-slider-wrapper {
+			position: relative;
+
+			@include breakpoint(small-desktop) {
+				width: 400px;
+				height: 180px;
+			}
+
+			.slider-content {
+
+				@include breakpoint(small-desktop) {
+					position: absolute;
+					top: 0;
+					width: 100%;
+					height: 180px;
+				}
+
+				p {
+					display: block;
+					overflow: hidden;
+
+					span {
+						display: block;
+					}
+				}
+			}
+
+			.slider-info {
+				margin-top: 60px;
+
+				@include breakpoint(small-desktop) {
+					margin: 0;
+				}
+
+				.mail {
+					color: $body-background;
+					text-decoration: none;
+
+					@include breakpoint(small-desktop) {
+						color: $primary-text;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+#social {
+	position: relative;
+	color: $primary-text;
+	z-index: 1;
+
+	@include breakpoint(small-desktop) {
+		position: fixed;
+		bottom: 20px;
+		padding: 0;
+	}
+
+	li {
+		display: inline-block;
+		margin: 3px 18px 3px 0;
+		padding: 0;
+		list-style: none;
+
+		@include breakpoint(small-desktop) {
+			margin: 0 0 0 18px;
+		}
+
+		a {
+			position: relative;
+			text-decoration: none;
+			color: $body-background;
+
+			@include breakpoint(small-desktop) {
+				color: $primary-text;
+			}
+
+			&:hover {
+
+				&:before {
+					width: 100%;
+					left: 0;
+				}
+			}
+
+			&:before {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 0;
+				height: 2px;
+				background-color: $primary-text;
+				transition: all .3s ease-in;
+
+				@include breakpoint(small-desktop) {
+					content: '';
+				}
+			}
+
+		}
+	}
+}
+
+#slider-button {
+	display: none;
+
+	@include breakpoint(small-desktop) {
+		display: block;
+		position: fixed;
+		top: 48%;
+		right: 20px;
+		padding: 10px;
+		transform: rotate(-90deg);
+		cursor: pointer;
+		z-index: 1;
+	}
+
+}
