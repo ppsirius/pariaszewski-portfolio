@@ -18,8 +18,17 @@ body {
 
 	@include breakpoint(small-desktop) {
 		color: $primary-text;
-
 	}
+}
+
+::-moz-selection {
+	color: #fff;
+	background-color: #000;
+}
+
+::selection {
+	color: #fff;
+	background-color: #000;
 }
 
 #app {
@@ -191,6 +200,7 @@ body {
 
 #slider-button {
 	display: none;
+	user-select: none;
 
 	@include breakpoint(small-desktop) {
 		display: block;

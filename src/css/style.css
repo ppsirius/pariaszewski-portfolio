@@ -210,6 +210,14 @@ body {
     body {
       color: #222; } }
 
+::-moz-selection {
+  color: #fff;
+  background-color: #000; }
+
+::selection {
+  color: #fff;
+  background-color: #000; }
+
 @media (min-width: 64em) {
   #app {
     display: -ms-flexbox;
@@ -333,7 +341,11 @@ body {
             content: ''; } }
 
 #slider-button {
-  display: none; }
+  display: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
   @media (min-width: 64em) {
     #slider-button {
       display: block;
