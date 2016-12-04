@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function() {
         sliderInfoSpans = sliderInfo.querySelectorAll('.slider-span'),
         sliderButton = document.querySelector('#slider-button'),
         activeAbout = true,
-        motionIsFinished = true,
         counter;
 
     function translateElement(element, translate) {
@@ -30,58 +29,69 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
 
+    // Hide second slide
     translateElement(sliderInfoSpans, 'translateY(-25px)');
 
     // Button toggle slides
-    if(motionIsFinished) {
-      sliderButton.addEventListener('click', function() {
-        // @todo disable button on animation
-        if (activeAbout) {
-          motionIsFinished = false;
-          anime({
-            targets: sliderAboutSpans,
-            translateY: '25px',
-            duration: 300,
-            direction: 'normal',
-            easing: 'easeInCubic',
-            complete: function () {
-              translateElement(sliderAboutSpans, 'translateY(-25px)');
-              motionIsFinished = true;
-            }
-          });
-          anime({
-            targets: sliderInfoSpans,
-            translateY: '0',
-            duration: 300,
-            direction: 'normal',
-            easing: 'easeInCubic'
-          });
-          activeAbout = false;
-          console.log('if')
-        } else {
-          motionIsFinished = false;
-          anime({
-            targets: sliderInfoSpans,
-            translateY: '25px',
-            duration: 300,
-            direction: 'normal',
-            easing: 'easeInCubic',
-            complete: function () {
-              translateElement(sliderInfoSpans, 'translateY(-25px)');
-              motionIsFinished = true;
-            }
-          });
-          anime({
-            targets: sliderAboutSpans,
-            translateY: '0',
-            duration: 300,
-            direction: 'normal',
-            easing: 'easeInCubic'
-          });
-          activeAbout = true;
-        }
-      });
+    sliderButton.addEventListener('click', sliderTransform);
+
+    function blockButton() {
+      sliderButton.removeEventListener('click', sliderTransform);
     }
+
+    function unblockButton() {
+      sliderButton.addEventListener('click', sliderTransform);
+    }
+
+    function sliderTransform() {
+      if (activeAbout) {
+        blockButton();
+        activeAbout = false;
+        anime({
+          targets: sliderAboutSpans,
+          translateY: '25px',
+          duration: 300,
+          direction: 'normal',
+          easing: 'easeInCubic',
+          complete: function () {
+            translateElement(sliderAboutSpans, 'translateY(-25px)');
+            motionIsFinished = true;
+            unblockButton();
+          }
+        });
+        anime({
+          targets: sliderInfoSpans,
+          translateY: '0',
+          duration: 300,
+          direction: 'normal',
+          easing: 'easeInCubic'
+        });
+
+      } else {
+        blockButton();
+        activeAbout = true;
+        anime({
+          targets: sliderInfoSpans,
+          translateY: '25px',
+          duration: 300,
+          direction: 'normal',
+          easing: 'easeInCubic',
+          complete: function () {
+            translateElement(sliderInfoSpans, 'translateY(-25px)');
+            motionIsFinished = true;
+            unblockButton()
+          }
+        });
+        anime({
+          targets: sliderAboutSpans,
+          translateY: '0',
+          duration: 300,
+          direction: 'normal',
+          easing: 'easeInCubic'
+        });
+      }
+    }
+
   }
 
   function alignSocial() {
