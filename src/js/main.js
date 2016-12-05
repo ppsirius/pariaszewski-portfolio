@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Loader motion
   var app = document.querySelector('#app'),
       loader = document.querySelector('#loader');
 
@@ -30,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         motionDuration = 300,
         motionEasing = 'easeInCubic',
         motionDirection = 'normal';
-
 
     function translateElement(element, translate) {
       for(counter = 0; counter < element.length; counter++ ) {
@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Social icon align
   function alignSocial() {
     var contentWrapper = document.querySelector('.content-slider-wrapper'),
         socialWrapper = document.querySelector('#social'),
@@ -116,11 +117,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', alignTextOnResize, false);
   }
 
-
   // Emoji console log
   var emoji = '🙈';
   console.log('Coded by jakbyco.com ' + emoji)
-
 });
 
 
