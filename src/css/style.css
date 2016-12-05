@@ -218,17 +218,19 @@ body {
   color: #fff;
   background-color: #000; }
 
-@media (min-width: 64em) {
-  #app {
-    display: -ms-flexbox;
-    display: flex;
-    height: 100%; } }
-
-#app .col-50 {
-  height: 100%;
-  -ms-flex: 0 0 50%;
-      flex: 0 0 50%;
-  overflow: hidden; }
+#app {
+  padding-bottom: 20px; }
+  @media (min-width: 64em) {
+    #app {
+      display: -ms-flexbox;
+      display: flex;
+      height: 100%;
+      padding: 0; } }
+  #app .col-50 {
+    height: 100%;
+    -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+    overflow: hidden; }
 
 .canvas {
   position: fixed; }

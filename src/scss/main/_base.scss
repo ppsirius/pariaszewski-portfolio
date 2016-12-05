@@ -32,10 +32,12 @@ body {
 }
 
 #app {
+	padding-bottom: 20px;
 
 	@include breakpoint(small-desktop) {
 		display: flex;
 		height: 100%;
+		padding: 0;
 	}
 	.col-50 {
 		height: 100%;

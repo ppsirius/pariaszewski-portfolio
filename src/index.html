@@ -13,11 +13,44 @@
 	<meta property="og:image" content="http://pariaszewski.com/img/og_image.jpg">
 	<meta property="og:url" content="http://pariaszewski.com">
 	<meta name="twitter:card" content="summary_large_image">
+	<meta name=”format-detection” content=”telephone=no”>
 
 	<style>
-		body {
+		#loader {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
+			overflow: hidden;
+			transition: opacity .2s ease-in;
+		}
+		#loader:after {
+			position: absolute;
+			display: inline-block;
+			height: 40px;
+			width: 40px;
+			margin: -25px 0 0 -25px;
+			top: 50%;
+			left: 50%;
+			background: #000;
+			content: '';
+			-webkit-animation: rotate 2s infinite;
+			-moz-animation: rotate 2s infinite;
+			-o-animation: rotate 2s infinite;
+			animation: rotate 2s infinite;
+	 	}
+
+		@-webkit-keyframes rotate {
+			0%   { -webkit-transform: rotate(0); }
+			50%  { -webkit-transform: rotate(145deg); }
+			100% { -webkit-transform: rotate(360deg); }
+		}
+
+		#app {
 			opacity: 0;
 			transition: opacity .5s ease-in;
+			transition-delay: .3s;
 		}
 	</style>
 
@@ -25,6 +58,8 @@
 </head>
 
 <body>
+
+	<div id="loader"></div>
 
 	<div id="app">
 

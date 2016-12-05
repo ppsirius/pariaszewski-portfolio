@@ -1,8 +1,12 @@
-document.addEventListener("DOMContentLoaded", function() {
-  document.body.style.opacity = '1';
+document.addEventListener('DOMContentLoaded', function() {
+  var app = document.querySelector('#app'),
+      loader = document.querySelector('#loader');
+
+  loader.style.opacity = '0';
+  app.style.opacity = '1';
 
   // Media query listener
-  var mediaQuery = window.matchMedia("(min-width: 1024px)");
+  var mediaQuery = window.matchMedia('(min-width: 1024px)');
   mediaQuery.addListener(runOnDesktop);
   runOnDesktop(mediaQuery);
 
@@ -14,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
+  // Slider motion
   function sliderChange() {
     var sliderAbout = document.querySelector('.slider-about'),
         sliderAboutSpans = sliderAbout.querySelectorAll('.slider-span'),
@@ -21,7 +26,11 @@ document.addEventListener("DOMContentLoaded", function() {
         sliderInfoSpans = sliderInfo.querySelectorAll('.slider-span'),
         sliderButton = document.querySelector('#slider-button'),
         activeAbout = true,
-        counter;
+        counter,
+        motionDuration = 300,
+        motionEasing = 'easeInCubic',
+        motionDirection = 'normal';
+
 
     function translateElement(element, translate) {
       for(counter = 0; counter < element.length; counter++ ) {
@@ -50,9 +59,9 @@ document.addEventListener("DOMContentLoaded", function() {
         anime({
           targets: sliderAboutSpans,
           translateY: '25px',
-          duration: 300,
-          direction: 'normal',
-          easing: 'easeInCubic',
+          duration: motionDuration,
+          direction: motionDirection,
+          easing: motionEasing,
           complete: function () {
             translateElement(sliderAboutSpans, 'translateY(-25px)');
             motionIsFinished = true;
@@ -62,9 +71,9 @@ document.addEventListener("DOMContentLoaded", function() {
         anime({
           targets: sliderInfoSpans,
           translateY: '0',
-          duration: 300,
-          direction: 'normal',
-          easing: 'easeInCubic'
+          duration: motionDuration,
+          direction: motionDirection,
+          easing: motionEasing
         });
 
       } else {
@@ -73,9 +82,9 @@ document.addEventListener("DOMContentLoaded", function() {
         anime({
           targets: sliderInfoSpans,
           translateY: '25px',
-          duration: 300,
-          direction: 'normal',
-          easing: 'easeInCubic',
+          duration: motionDuration,
+          direction: motionDirection,
+          easing: motionEasing,
           complete: function () {
             translateElement(sliderInfoSpans, 'translateY(-25px)');
             motionIsFinished = true;
@@ -85,13 +94,12 @@ document.addEventListener("DOMContentLoaded", function() {
         anime({
           targets: sliderAboutSpans,
           translateY: '0',
-          duration: 300,
-          direction: 'normal',
-          easing: 'easeInCubic'
+          duration: motionDuration,
+          direction: motionDirection,
+          easing: motionEasing
         });
       }
     }
-
   }
 
   function alignSocial() {
@@ -109,8 +117,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 
-  var emoji = "🙈";
-
+  // Emoji console log
+  var emoji = '🙈';
   console.log('Coded by jakbyco.com ' + emoji)
 
 });
