@@ -54,6 +54,36 @@
 		}
 	</style>
 
+	<script>
+		(function App() {
+			var timerLoad = 0,
+				interval = null,
+				value = 500,
+				timeForLoader = 2000;
+				windowOnload = false;
+
+			// Start interval
+			interval = setInterval(counterAftelLoad, value);
+			function counterAftelLoad() {
+				timerLoad += value;
+				console.log(value > timeForLoader);
+				console.log(windowOnload + 'window');
+				if(value > timeForLoader && windowOnload) {
+					//wtf
+					init();
+				}
+			}
+			// Clear interval
+			window.onload = function() {
+				clearInterval(interval);
+				windowOnload = true;
+				console.log(windowOnload)
+			};
+
+		})();
+
+	</script>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 

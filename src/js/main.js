@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
+function init(){
+
   // Loader motion
   var app = document.querySelector('#app'),
       loader = document.querySelector('#loader');
@@ -120,6 +121,5 @@ document.addEventListener('DOMContentLoaded', function() {
   // Emoji console log
   var emoji = '🙈';
   console.log('Coded by jakbyco.com ' + emoji)
-});
 
-
+};
