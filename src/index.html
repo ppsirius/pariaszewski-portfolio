@@ -56,43 +56,43 @@
 
 	<script>
 		(function App() {
-			var timerLoad = 0,
-				interval = null,
-				value = 500,
-				timeForLoader = 2000;
-				windowOnload = false;
 
-			// Start interval
-			interval = setInterval(counterAftelLoad, value);
-			function counterAftelLoad() {
-				timerLoad += value;
-				console.log(value > timeForLoader);
-				console.log(windowOnload + 'window');
-				if(value > timeForLoader && windowOnload) {
-					//wtf
-					init();
-				}
-			}
-			// Clear interval
-			window.onload = function() {
-				clearInterval(interval);
-				windowOnload = true;
-				console.log(windowOnload)
-			};
+		    // Run init script after dom loaded and minimum seconds u type
+		    function loadTimer(milisecondsValue) {
+                var timeForLoader = milisecondsValue,
+                    timerLoad = 0,
+                    interval = null,
+                    value = 500,
+                    windowOnload = false;
 
+
+
+                function counterAftelLoad() {
+                    timerLoad += value;
+                    if(timerLoad > timeForLoader && windowOnload) {
+                        init();
+                        clearInterval(interval);
+                    }
+                }
+
+                // Start interval
+                interval = setInterval(counterAftelLoad, value);
+
+                window.onload = function() {
+                    windowOnload = true;
+                };
+
+            }
+
+            loadTimer(2000);
 		})();
-
 	</script>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
 	<div id="loader"></div>
-
 	<div id="app">
-
 		<!--    Image wrapper   -->
 		<div class="canvas col-50">
 			<div class="mask-img">
@@ -103,7 +103,6 @@
 				<img class="img" src="img/image_desktop.jpg" />
 			</div>
 		</div>
-
 		<!--    Content wrapper -->
 		<div class="content col-50">
 			<div id="content-slider">
@@ -155,7 +154,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!--    Slider button -->
 		<div id="slider-button">
 			<p>
@@ -163,34 +161,39 @@
 				<!--<span class="slider-button-about">about</span>-->
 			</p>
 		</div>
-
 		<!--    Social wrapper  -->
 		<ul id="social">
 			<li>
 				<a href="https://www.behance.net/pariaszewski" target="_blank">
-					behance
-				</a>
+				    <span class="social-span">
+						behance
+                    </span>
+                </a>
 			</li>
 			<li>
 				<a href="https://dribbble.com/pariaszewski_p" target="_blank">
-					dribbble
-				</a>
+				    <span class="social-span">
+						dribbble
+                    </span>
+                </a>
 			</li>
 			<li>
 				<a href="https://www.instagram.com/pariaszewski_pawel/" target="_blank">
-					instagram
-				</a>
+				    <span class="social-span">
+						instagram
+                    </span>
+                </a>
 			</li>
 			<li>
 				<a href="https://www.facebook.com/ppariaszewski" target="_blank">
-					facebook
-				</a>
+				    <span class="social-span">
+						facebook
+                    </span>
+                </a>
 			</li>
 		</ul>
 	</div>
-
     <!-- JS -->
-
     <link href="https://fonts.googleapis.com/css?family=Poppins:500,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="js/main.js"></script>
 	<script src="js/anime.min.js"></script>

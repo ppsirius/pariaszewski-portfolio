@@ -1,9 +1,21 @@
 function init(){
 
-  // Loader motion
-  var app = document.querySelector('#app'),
-      loader = document.querySelector('#loader');
+    var sliderAboutSpans = document.querySelectorAll('.slider-about .slider-span'),
+        sliderInfoSpans = document.querySelectorAll('.slider-info .slider-span'),
+        sliderButton = document.querySelector('#slider-button'),
+        sliderButtonSpan = sliderButton.querySelector('.slider-button-info'),
+        socialSpans = document.querySelectorAll('.social-span'),
+        app = document.querySelector('#app'),
+        loader = document.querySelector('#loader'),
+        motionDuration = 300,
+        motionEasing = 'easeInQuad',
+        motionDirection = 'normal',
+        contentWrapper = document.querySelector('.content-slider-wrapper'),
+        socialWrapper = document.querySelector('#social'),
+        contentWrapperPosition = 0,
+        counter;
 
+  // Loader motion
   loader.style.opacity = '0';
   app.style.opacity = '1';
 
@@ -20,24 +32,53 @@ function init(){
     }
   }
 
+  console.log(anime.easings);
+
+  // Transform element
+  function translateElement(element, translate) {
+    if(typeof element == 'undefined') {
+        console.log('ssssss')
+        element.style.transform = translate;
+    } else {
+        for(counter = 0; counter < element.length; counter++ ) {
+            element[counter].style.transform = translate;
+        }
+    }
+  }
+
+  // Init reset elements
+  translateElement(sliderAboutSpans, 'translateY(-25px)');
+  translateElement(sliderButtonSpan, 'translateY(-25px)');
+  translateElement(socialSpans, 'translateY(-25px)');
+
+  // Init load elements
+  anime({
+      targets: sliderAboutSpans,
+      translateY: '0',
+      duration: motionDuration,
+      direction: motionDirection,
+      easing: motionEasing,
+      delay: 1000,
+      complete: function () {
+          anime({
+              targets: socialSpans,
+              translateY: '0',
+              duration: motionDuration,
+              direction: motionDirection,
+              easing: motionEasing,
+              delay: function(el, index) {
+                  return index * 100;
+              },
+              complete: function () {
+
+              }
+          });
+      }
+  });
+
   // Slider motion
   function sliderChange() {
-    var sliderAbout = document.querySelector('.slider-about'),
-        sliderAboutSpans = sliderAbout.querySelectorAll('.slider-span'),
-        sliderInfo = document.querySelector('.slider-info'),
-        sliderInfoSpans = sliderInfo.querySelectorAll('.slider-span'),
-        sliderButton = document.querySelector('#slider-button'),
-        activeAbout = true,
-        counter,
-        motionDuration = 300,
-        motionEasing = 'easeInCubic',
-        motionDirection = 'normal';
-
-    function translateElement(element, translate) {
-      for(counter = 0; counter < element.length; counter++ ) {
-        element[counter].style.transform = translate;
-      }
-    }
+    var activeAbout = true;
 
     // Hide second slide
     translateElement(sliderInfoSpans, 'translateY(-25px)');
@@ -105,9 +146,6 @@ function init(){
 
   // Social icon align
   function alignSocial() {
-    var contentWrapper = document.querySelector('.content-slider-wrapper'),
-        socialWrapper = document.querySelector('#social'),
-        contentWrapperPosition = 0;
 
     function alignTextOnResize() {
       contentWrapperPosition = contentWrapper.getBoundingClientRect().left;
@@ -121,5 +159,4 @@ function init(){
   // Emoji console log
   var emoji = '🙈';
   console.log('Coded by jakbyco.com ' + emoji)
-
 };
